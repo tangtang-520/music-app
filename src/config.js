@@ -5,7 +5,7 @@ export default {
     // 应用信息
     appInfo: {
       // 应用名称
-      name: "music-demo",
+      name: "music-app",
       // 应用版本
       version: "1.0.0",
       // 应用logo
