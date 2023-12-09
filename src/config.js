@@ -1,6 +1,13 @@
 // 应用全局配置
 export default {
+    // #ifdef H5
     baseUrl: 'http://localhost:3000',
+    // #endif
+
+    // #ifdef APP-PLUS
+    baseUrl: '',
+    // #endif
+    
     // 应用信息
     appInfo: {
       // 应用名称

@@ -10,6 +10,11 @@
         "usingComponents" : true,
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
+		"compatible": {                             //可选，JSON对象，uni-app兼容模式
+		            "ignoreVersion": false,                             //可选，Boolean类型，是否忽略版本兼容检查提示
+		            "runtimeVersion": "3.96,3.98",                               //可选，字符串类型，兼容的uni-app运行环境版本号，多个版本使用,分割
+		            "compilerVersion": "3.98"                               //可选，字符串类型，兼容的编译器版本号
+		        },
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,

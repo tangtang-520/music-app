@@ -28,8 +28,6 @@ export default defineConfig({
   //   open: false,
   //   proxy: {
   //     "/": {
-  //       // target: 'http://172.18.1.152:8082/', //谭sir 本地
-  //       // target: 'http://172.18.3.146:8082/',  // 彭峰本地
   //       target: "http://localhost:3000", // 测试服
   //       changeOrigin: true,
   //       rewrite: (p) => p.replace(/^\/dev-api/, ""),

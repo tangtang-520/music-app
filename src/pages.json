@@ -1,9 +1,50 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"custom": {
+		"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+		"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+		"^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+	},
+	"pages": [
 		{
-			"path": "pages/index/index",
+			"path": "pages/find/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/podcast/index",
+			"style": {
+				"navigationBarTitleText": "播客",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/follow/index",
+			"style": {
+				"navigationBarTitleText": "关注",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/community/index",
+			"style": {
+				"navigationBarTitleText": "社区",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": true
 			}
 		}
 	],
@@ -11,6 +52,47 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#d11d05",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/find/index",
+				"iconPath": "static/tabBarImg/find.png",
+				"selectedIconPath": "static/tabBarImg/findSelect.png",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/podcast/index",
+				"iconPath": "static/tabBarImg/podcast.png",
+				"selectedIconPath": "static/tabBarImg/podCastSelect.png",
+				"text": "播客"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"iconPath": "static/tabBarImg/my.png",
+				"selectedIconPath": "static/tabBarImg/mySelect.png",
+				"text": "我的"
+			},
+			{
+				"pagePath": "pages/follow/index",
+				"iconPath": "static/tabBarImg/follow.png",
+				"selectedIconPath": "static/tabBarImg/followSelect.png",
+				"text": "关注"
+			},
+			{
+				"pagePath": "pages/community/index",
+				"iconPath": "static/tabBarImg/community.png",
+				"selectedIconPath": "static/tabBarImg/communitySelect.png",
+				"text": "社区"
+			}
+		]
 	}
 }
