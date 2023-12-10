@@ -29,15 +29,14 @@ const request = config => {
         header: config.header,
         dataType: 'json'
       }).then(response => {
-        console.log(response);
         let {error, data} = response
         if (error) {
           toast('后端接口连接异常')
           reject('后端接口连接异常')
           return
         }
-        const code = data.data.code || 200
-        const msg = errorCode[code] || data.data.msg || errorCode['default']
+        const code =  data.statusCode || 200
+        const msg = errorCode[code] || data.errMsg || errorCode['default']
         if (code === 401) {
           showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
             // if (res.confirm) {
@@ -54,7 +53,7 @@ const request = config => {
           toast(msg)
           reject(code)
         }
-        resolve(data.data)
+        resolve(data.data || data.result)
       })
       .catch(error => {
         let { message } = error

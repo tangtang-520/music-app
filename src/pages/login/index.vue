@@ -2,7 +2,7 @@
   <view class="content">
     <image class="qrimg" mode="scaleToFill" :src="qrImgSrc"></image>
 	<view class="">
-		111111111
+
 	</view>
   </view>
 </template>
