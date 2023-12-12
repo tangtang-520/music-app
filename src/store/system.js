@@ -1,5 +1,5 @@
 // 获取设备信息
-const useSystemStore = defineStore('user', {
+const useSystemStore = defineStore('system', {
   state: () => ({
     systemInfo:{
         statusBarHeight: 30
@@ -10,7 +10,6 @@ const useSystemStore = defineStore('user', {
         return uni.getSystemInfo({
           success: function (res) {
             state.systemInfo = res
-            console.log(res);
           },
           fail: function (err) {
             console.log('getSystemInfoErr:', err);

@@ -9,6 +9,14 @@
 	},
 	"pages": [
 		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/find/index",
 			"style": {
 				"enablePullDownRefresh": true,
@@ -40,13 +48,6 @@
 			"path": "pages/community/index",
 			"style": {
 				"navigationBarTitleText": "社区",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/login/index",
-			"style": {
-				"navigationBarTitleText": "登录",
 				"enablePullDownRefresh": true
 			}
 		}

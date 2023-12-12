@@ -14,10 +14,10 @@
           <view class="itemPic">
             <text class="playNumSty">{{ item?.playCount }}</text>
             <up-image
-              :show-loading="true"
+              :lazy-load="true"
               :src="item?.picUrl"
-              width="150px"
-              height="150px"
+              width="140px"
+              height="140px"
               :radius="10"
             ></up-image>
             <u-icon

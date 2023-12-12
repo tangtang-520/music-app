@@ -12,7 +12,7 @@ const request = config => {
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
   if (getToken() && !isToken) {
-    config.header['Authorization'] = 'Bearer ' + getToken()
+    config.header['cookie'] = getToken()
   }
   // get请求映射params参数
   if (config.params) {
@@ -22,20 +22,22 @@ const request = config => {
   }
   return new Promise((resolve, reject) => {
     uni.request({
-        method: config.method || 'get',
+        method: config.method || 'GET',
         timeout: config.timeout ||  timeout,
         url: config.baseUrl || baseUrl + config.url,
         data: config.data,
         header: config.header,
-        dataType: 'json'
+        dataType: 'json',
+        // withCredentials: true, 
       }).then(response => {
+        // console.log('response.header>>>>', response.header);
         let {error, data} = response
         if (error) {
           toast('后端接口连接异常')
           reject('后端接口连接异常')
           return
         }
-        const code =  data.statusCode || 200
+        const code =  data.statusCode || data.code || 200
         const msg = errorCode[code] || data.errMsg || errorCode['default']
         if (code === 401) {
           showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
@@ -53,7 +55,7 @@ const request = config => {
           toast(msg)
           reject(code)
         }
-        resolve(data.data || data.result)
+        resolve(data.data || data.result || data)
       })
       .catch(error => {
         let { message } = error

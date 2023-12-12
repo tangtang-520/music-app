@@ -21,5 +21,12 @@ export default {
 @import "@/uni_modules/uview-plus/index.scss";
 .app-continer {
   padding: 20rpx;
-}             
+}
+$appColor: #d11d05;      
+.pd10{
+  padding: 20rpx;
+}
+.mgb10{
+  margin-bottom: 20rpx;
+}
 </style>
