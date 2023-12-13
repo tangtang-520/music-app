@@ -23,7 +23,6 @@ const tipsShow = ref(false);
 const getQrLoginKey = () => {
   tipsShow.value = false;
   getQrKey().then((res) => {
-    console.log(res);
     const params = {
       key: res.unikey,
       qrimg: true,
@@ -36,7 +35,6 @@ getQrLoginKey();
 
 const getQrImgSrc = (params) => {
   getQrImg(params).then((res) => {
-    console.log(res);
     qrImgSrc.value = res.qrimg;
     QrCheck(params?.key);
   });
@@ -45,13 +43,11 @@ const getQrImgSrc = (params) => {
 // 轮询获取二维码接口扫描情况
 const QrCheck = (key) => {
   const timer = setInterval(() => {
-    console.log(2222);
     const params = {
       key: key,
       timestamp: Date.now(),
     };
     getQrCheck(params).then((res) => {
-      console.log(res);
       if (res.code === 800) {
         toast("二维码已过期,请点击二维码重新获取");
         tipsShow.value = true;

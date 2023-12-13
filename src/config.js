@@ -5,7 +5,7 @@ export default {
     // #endif
 
     // #ifdef APP-PLUS
-    baseUrl: 'http://1.92.85.207:80',
+    baseUrl: '',
     // #endif
     
     // 应用信息

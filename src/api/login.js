@@ -63,6 +63,41 @@ export function getQrCheck(params){
 }
 
 
+// 获取手机验证码
+export function getPhoneCode(params) {
+  return request({
+    url: "/captcha/sent",
+    headers: {
+      isToken: false,
+    },
+    data:params
+  })
+}
+
+// 验证验证码
+export function getCheckCode(params) {
+  return request({
+    url: "/captcha/verify",
+    headers: {
+      isToken: false,
+    },
+    data:params
+  })
+}
+
+// 手机号登录
+export function getLoginPhone(params) {
+  return request({
+    url: "/login/cellphone",
+    headers: {
+      isToken: false,
+    },
+    data:params
+  })
+}
+
+
+
 // export function login(username, password, code, uuid) {
 //     const data = {
 //       username,

@@ -31,7 +31,6 @@ const request = config => {
         dataType: 'json',
         // withCredentials: true, 
       }).then(response => {
-        console.log('response.header>>>>', config.url);
         let {error, data} = response
         if (error) {
           toast('后端接口连接异常')
@@ -43,7 +42,7 @@ const request = config => {
           return
         }
         const code =  data.statusCode || data.code  || 200 
-        const msg = errorCode[code] || data.errMsg || errorCode['default']
+        const msg = errorCode[code] || data.errMsg || data.message  || errorCode['default']
         if (code === 401) {
           showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
             // if (res.confirm) {
@@ -53,6 +52,9 @@ const request = config => {
             // }
           })
           reject('无效的会话，或者会话已过期，请重新登录。')
+        }else if(code === 400) {
+          toast(msg)
+          reject('400')
         } else if (code === 500) {
           toast(msg)
           reject('500')
