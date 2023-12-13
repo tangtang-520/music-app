@@ -6,6 +6,7 @@ import { toast, showConfirm, tansParams } from '@/utils/common'
 
 let timeout = 10000
 const baseUrl = config.baseUrl
+const whiteUrl  = ['/login/qr/check']
 
 const request = config => {
   // 是否需要设置 token
@@ -30,14 +31,18 @@ const request = config => {
         dataType: 'json',
         // withCredentials: true, 
       }).then(response => {
-        // console.log('response.header>>>>', response.header);
+        console.log('response.header>>>>', config.url);
         let {error, data} = response
         if (error) {
           toast('后端接口连接异常')
           reject('后端接口连接异常')
           return
         }
-        const code =  data.statusCode || data.code || 200
+        if(whiteUrl.includes(config.url)) {
+          resolve(data)
+          return
+        }
+        const code =  data.statusCode || data.code  || 200 
         const msg = errorCode[code] || data.errMsg || errorCode['default']
         if (code === 401) {
           showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
@@ -51,6 +56,9 @@ const request = config => {
         } else if (code === 500) {
           toast(msg)
           reject('500')
+        } else if( code === 800) {
+          toast(msg)
+          reject('800')
         } else if (code !== 200) {
           toast(msg)
           reject(code)
