@@ -43,12 +43,12 @@
 <script setup>
 import { getPhoneCode, getCheckCode, getLoginPhone } from "@/api/login";
 import { toast } from "@/utils/common";
-import { setToken } from "@/utils/auth";
+import { setToken, setUseId } from "@/utils/auth";
 import useUserStore from "@/store/user";
 const props = defineProps({
   countryCode: String,
 });
-const emit = defineEmits(["tapCode", 'changPageLoad']);
+const emit = defineEmits(["tapCode", "changPageLoad"]);
 
 // 电话号码
 const phoneValue = ref(null);
@@ -106,35 +106,35 @@ const checkCode = () => {
 
 // 点击登录
 const tapLogin = () => {
- 
-  if( phoneValue.value === null || phoneValue.value === "") {
-    return toast('请输入电话')
+  if (phoneValue.value === null || phoneValue.value === "") {
+    return toast("请输入电话");
   }
-  if( codeValue.value === null || codeValue.value === "") {
-    return toast('请输入验证码')
+  if (codeValue.value === null || codeValue.value === "") {
+    return toast("请输入验证码");
   }
-  
+
   checkCode().then((res) => {
-    emit('changPageLoad')
+    emit("changPageLoad");
     const params = {
       phone: phoneValue.value,
       captcha: codeValue.value,
-    }
-    getLoginPhone(params).then( res =>{
-      setToken(res.cookie)
-      useUserStore().setUseId(res.userId);
-      useUserStore().setProfile(res.profile);
-      uni.reLaunch({
-        url: "/pages/find/index",
+      timestamp: Date.now(),
+    };
+    getLoginPhone(params)
+      .then((res) => {
+        console.log(res);
+        setToken(res.cookie);
+        setUseId(res.userId);
+        useUserStore().setProfile(res.profile);
+        uni.reLaunch({
+          url: "/pages/find/index",
+        });
+      })
+      .finally(() => {
+        emit("changPageLoad");
       });
-    }).finally( () =>{
-      emit('changPageLoad')
-    } )
-  })
+  });
 };
-
-
-
 </script>
 <style lang="scss" scoped>
 .phoneLogin {

@@ -3,7 +3,8 @@ const useSystemStore = defineStore('system', {
   state: () => ({
     systemInfo:{
         statusBarHeight: 30
-    }
+    },
+    popupShow: false
   }),
   getters: {
     getSystemInfoData: state => {
@@ -19,6 +20,9 @@ const useSystemStore = defineStore('system', {
       }
   },
   actions: {
+    setPopupShow(){
+      this.popupShow = !this.popupShow
+    }
   }
 });
 

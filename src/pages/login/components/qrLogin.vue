@@ -11,9 +11,10 @@
   </view>
 </template>
 <script setup>
-import { getQrKey, getQrImg, getQrCheck } from "@/api/login";
+import { getQrKey, getQrImg, getQrCheck, getSubCountData, } from "@/api/login";
 import { toast } from "@/utils/common";
-import { setToken } from "@/utils/auth";
+import { setToken, setUseId } from "@/utils/auth";
+import useUserStore from "@/store/user";
 const qrImgSrc = ref(null);
 const tipsShow = ref(false);
 
@@ -42,7 +43,15 @@ const getQrImgSrc = (params) => {
 
 // 轮询获取二维码接口扫描情况
 const QrCheck = (key) => {
+  const pages = getCurrentPages() // 获取栈实例
+  const currentRoute = pages[pages.length - 1].route; 
   const timer = setInterval(() => {
+    var nowPage = getCurrentPages()
+    var nowRoute = nowPage[nowPage.length - 1].route; 
+    if( currentRoute !== nowRoute){
+      clearInterval(timer);
+      return
+    }
     const params = {
       key: key,
       timestamp: Date.now(),
@@ -55,7 +64,9 @@ const QrCheck = (key) => {
       }
       if (res.code === 803) {
         setToken(res.cookie);
+        console.log(res);
         clearInterval(timer);
+        accountData()
         uni.reLaunch({
           url: "/pages/find/index",
         });
@@ -63,6 +74,17 @@ const QrCheck = (key) => {
     });
   }, 3000);
 };
+
+
+// 获取账号信息
+const accountData = () => {
+  getSubCountData().then( res => {
+    setUseId(res.account?.id)
+    useUserStore().setProfile(res?.profile);
+  } )
+}
+
+
 </script>
 <style lang="scss" scoped>
 .qrLogin {

@@ -45,11 +45,11 @@ const getSongRecommendList = () => {
   };
   getPersonalized(params)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       recommendList.value = res;
     })
     .finally(() => {
-      console.log(1111);
+      // console.log(1111);
     });
 };
 

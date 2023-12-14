@@ -18,7 +18,7 @@ export function getQrImg(params) {
     headers: {
       isToken: false,
     },
-    data:params
+    data: params,
   });
 }
 
@@ -29,7 +29,7 @@ export function getCountryCodeList() {
     headers: {
       isToken: false,
     },
-  })
+  });
 }
 
 // 游客登录
@@ -39,29 +39,42 @@ export function getVisitorLogin() {
     headers: {
       isToken: false,
     },
-  })
+  });
 }
 
 // 获取用户详情
 export function getUser(params) {
   return request({
     url: "/user/detail",
-    data: params
-  })
+    data: params,
+  });
 }
 
+// 获取用户信息
+export function getUserInfo(params) {
+  return request({
+    url: "/user/detail",
+    data: params,
+  });
+}
+
+// 获取账号信息
+export function getSubCountData() {
+  return request({
+    url: "/user/account",
+  });
+}
 
 // 二维码检测扫码状态检测
-export function getQrCheck(params){
+export function getQrCheck(params) {
   return request({
     url: "/login/qr/check",
     headers: {
       isToken: false,
     },
-    data:params
-  })
+    data: params,
+  });
 }
-
 
 // 获取手机验证码
 export function getPhoneCode(params) {
@@ -70,8 +83,8 @@ export function getPhoneCode(params) {
     headers: {
       isToken: false,
     },
-    data:params
-  })
+    data: params,
+  });
 }
 
 // 验证验证码
@@ -81,8 +94,8 @@ export function getCheckCode(params) {
     headers: {
       isToken: false,
     },
-    data:params
-  })
+    data: params,
+  });
 }
 
 // 手机号登录
@@ -92,11 +105,16 @@ export function getLoginPhone(params) {
     headers: {
       isToken: false,
     },
-    data:params
-  })
+    data: params,
+  });
 }
 
-
+// 退出登录
+export function getOutLogin() {
+  return request({
+    url: "/logout",
+  });
+}
 
 // export function login(username, password, code, uuid) {
 //     const data = {

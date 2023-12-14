@@ -17,7 +17,7 @@
             "compilerVersion" : "3.98" //可选，字符串类型，兼容的编译器版本号
         },
         "splashscreen" : {
-            "alwaysShowBeforeRender" : true,
+            "alwaysShowBeforeRender" : false,
             "waiting" : true,
             "autoclose" : true,
             "delay" : 0

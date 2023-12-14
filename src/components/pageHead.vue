@@ -1,15 +1,17 @@
 <template>
   <view class="headerCont" :style="'margin-top:' + marginTop + 'px'">
-    <u-navbar :safeAreaInsetTop="true"  fixed placeholder>
+    <u-navbar :safeAreaInsetTop="true" fixed placeholder>
       <template #left>
-        <view class="u-nav-slot">
+        <view v-if="leftIcon" @tap="openSetPopup">
           <u-icon name="list" size="28"></u-icon>
         </view>
+        <slot v-else name="left"></slot>
       </template>
       <template #center>
-        <view class="seachBox">
-          <u-search :placeholder="placeholder" v-model="searchValue" :showAction="false"></u-search>
-        </view>
+        <slot name="center"></slot>
+      </template>
+      <template #right>
+        <slot name="right"></slot>
       </template>
     </u-navbar>
   </view>
@@ -19,9 +21,19 @@ import useSystemStore from "@/store/system";
 const systemStore = useSystemStore();
 const marginTop = systemStore.systemInfo?.statusBarHeight;
 
-const searchValue = ref("");
-const placeholder = ref('大家都在搜')
+const props = defineProps({
+  leftIcon: {
+    type: Boolean,
+    default: true,
+  },
+});
 
+const emit = defineEmits([])
+
+const openSetPopup = () => {
+  // console.log();
+  systemStore.setPopupShow()
+}
 
 
 </script>

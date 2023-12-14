@@ -11,3 +11,11 @@ export function setToken(token) {
 export function removeToken() {
   return uni.removeStorageSync(TokenKey);
 }
+
+export function setUseId(id) {
+  return uni.setStorageSync('useId', id);
+}
+
+export function getUseId() {
+  return uni.getStorageSync('useId');
+}
