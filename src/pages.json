@@ -4,7 +4,7 @@
 		"custom": {
 			"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
 			"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
-	        "^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+			"^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
 		}
 	},
 	"pages": [
@@ -14,13 +14,24 @@
 				"navigationBarTitleText": "登录",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
+			},
+			"app-plus": {
+				"bounce": "none"
 			}
 		},
 		{
 			"path": "pages/find/index",
 			"style": {
 				"enablePullDownRefresh": true,
-				"navigationStyle": "custom"
+				"navigationStyle": "custom",
+				"pullToRefresh":{
+					"color": "#d11d05",
+					"offset":"100px"
+				}
+			},
+			"app-plus": {
+				"bounce": "none"
+				
 			}
 		},
 		{
@@ -58,7 +69,8 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
-			"background": "#efeff4"
+			"background": "#efeff4",
+			"bounce": "none"
 		}
 	},
 	"tabBar": {

@@ -1,46 +1,23 @@
-import { getToken, removeToken, setToken } from '@/utils/auth';
+import { getToken, setToken, getUseId, getUserInfo } from "@/utils/auth";
 import { getVisitorLogin } from "@/api/login";
 
-
-const useUserStore = defineStore('user', {
+const useUserStore = defineStore("user", {
   state: () => ({
     token: getToken(),
-    profile:{},
-    userId:null,
+    profile: getUserInfo(),
+    userId: getUseId(),
   }),
   getters: {
-    getDepartment: state => {
-      return data => (state.department = data);
+    getDepartment: (state) => {
+      return (data) => (state.department = data);
     },
-    
   },
   actions: {
-    login() {
-      getVisitorLogin().then( res => {
-        setToken(res.cookie)
-        this.userId = res.userId
-      })
-    },
-    setUseId(id){
-      this.userId = id
-      console.log(this.userId);
-    },
-
-    setProfile(data){
-      this.profile = data
-    },
-    
     // 退出系统
     logOut() {
-      return new Promise(resolve => {
-        this.token = '';
-        this.roles = [];
-        this.permissions = [];
-        removeToken();
-        resolve();
-      });
-    }
-  }
+      return new Promise((resolve) => {});
+    },
+  },
 });
 
 export default useUserStore;

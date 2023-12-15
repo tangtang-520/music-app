@@ -19,3 +19,11 @@ export function setUseId(id) {
 export function getUseId() {
   return uni.getStorageSync('useId');
 }
+
+export function getUserInfo() {
+  return uni.getStorageSync('profile');
+}
+export function setUserInfo(data) {
+  return uni.setStorageSync('profile', data);
+}
+

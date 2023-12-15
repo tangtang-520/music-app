@@ -58,10 +58,11 @@ export function getUserInfo(params) {
   });
 }
 
-// 获取账号信息
-export function getSubCountData() {
+// 获取账号信息 传递cookie参数
+export function getSubCountData(params) {
   return request({
     url: "/user/account",
+    data:params
   });
 }
 

@@ -4,8 +4,8 @@ import { createPinia } from "pinia";
 const pinia = createPinia();
 import uviewPlus from "@/uni_modules/uview-plus";
 
-import pageHead from "@/components/pageHead";
-import setUserPopup from "@/components/setUserPopup";
+import pageHead from "@/components/pageHead/pageHead";
+import setUserPopup from "@/components/setUserPopup/setUserPopup";
 
 
 

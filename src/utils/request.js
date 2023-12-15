@@ -13,7 +13,10 @@ const request = config => {
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
   if (getToken() && !isToken) {
+    // #ifdef H5
     config.header['cookie'] = getToken()
+    // #endif
+    
   }
   // get请求映射params参数
   if (config.params) {

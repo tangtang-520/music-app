@@ -43,8 +43,7 @@
 <script setup>
 import { getPhoneCode, getCheckCode, getLoginPhone } from "@/api/login";
 import { toast } from "@/utils/common";
-import { setToken, setUseId } from "@/utils/auth";
-import useUserStore from "@/store/user";
+import { setToken, setUseId, setUserInfo } from "@/utils/auth";
 const props = defineProps({
   countryCode: String,
 });
@@ -98,7 +97,6 @@ const checkCode = () => {
       timestamp: Date.now(),
     };
     getCheckCode(params).then((res) => {
-      console.log(res);
       resolve(res);
     });
   });
@@ -122,10 +120,9 @@ const tapLogin = () => {
     };
     getLoginPhone(params)
       .then((res) => {
-        console.log(res);
         setToken(res.cookie);
-        setUseId(res.userId);
-        useUserStore().setProfile(res.profile);
+        setUseId(res.profile?.userId);
+        setUserInfo(res.profile)
         uni.reLaunch({
           url: "/pages/find/index",
         });

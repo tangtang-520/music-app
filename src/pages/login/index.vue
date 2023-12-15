@@ -45,11 +45,18 @@ import countyPopup from "./components/countryPopup.vue";
 import qrLoginVue from "./components/qrLogin.vue";
 import phoneLogin from "./components/phoneLogin.vue";
 import { getVisitorLogin, getCountryCodeList } from "@/api/login";
-import { setToken } from "@/utils/auth";
+import { setToken, getToken } from "@/utils/auth";
 import useSystemStore from "@/store/system";
-import useUserStore from "@/store/user";
 import phoneLogImg from "@/static/login/phone.png";
 import qrLogImg from "@/static/login/arcode.png";
+
+onLoad(() => {
+  if (getToken()) {
+    uni.reLaunch({
+      url: "/pages/find/index",
+    });
+  }
+});
 
 const systemStore = useSystemStore();
 const marginTop = systemStore.systemInfo?.statusBarHeight;
@@ -93,7 +100,6 @@ getCountryData();
 const toExperience = () => {
   getVisitorLogin().then((res) => {
     setToken(res.cookie);
-    useUserStore().setUseId(res.userId);
     uni.reLaunch({
       url: "/pages/find/index",
     });

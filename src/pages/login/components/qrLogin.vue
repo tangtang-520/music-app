@@ -13,8 +13,7 @@
 <script setup>
 import { getQrKey, getQrImg, getQrCheck, getSubCountData, } from "@/api/login";
 import { toast } from "@/utils/common";
-import { setToken, setUseId } from "@/utils/auth";
-import useUserStore from "@/store/user";
+import { setToken, setUseId, setUserInfo } from "@/utils/auth";
 const qrImgSrc = ref(null);
 const tipsShow = ref(false);
 
@@ -78,9 +77,12 @@ const QrCheck = (key) => {
 
 // 获取账号信息
 const accountData = () => {
-  getSubCountData().then( res => {
-    setUseId(res.account?.id)
-    useUserStore().setProfile(res?.profile);
+  const params = {
+    cookie: getToken()
+  }
+  getSubCountData(params).then( res => {
+    setUseId(res.profile?.userId)
+    setUserInfo(res?.profile);
   } )
 }
 

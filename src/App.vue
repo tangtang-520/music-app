@@ -2,6 +2,7 @@
 import useSystemStore from "./store/system";
 import useUserStore from "@/store/user";
 import { getUserInfo } from "@/api/login";
+import { setUserInfo } from "@/utils/auth";
 
 // import
 export default {
@@ -10,27 +11,18 @@ export default {
     // token标志来判断
     const token = uni.getStorageSync("OAUTH2");
     const getUseId = uni.getStorageSync("useId");
-    
+
+    // #ifdef APP-PLUS || H5
     if (token) {
       //存在则关闭启动页进入首页
       if (getUseId) {
         // 获取用户信息
-         // #ifdef APP-PLUS || H5
         const params = {
           uid: getUseId,
           timestamp: Date.now(),
         };
         getUserInfo(params).then((res) => {
-          useUserStore().setProfile(res.profile);
-        });
-        // #endif
-        uni.reLaunch({
-          url: "/pages/find/index",
-          success: () => {
-            // #ifdef APP-PLUS
-            plus.navigator.closeSplashscreen();
-            // #endif
-          },
+          setUserInfo(res.profile)
         });
       }
     } else {
@@ -40,11 +32,11 @@ export default {
         success: () => {
           // #ifdef APP-PLUS
           plus.navigator.closeSplashscreen();
-            // #endif
+          // #endif
         },
       });
     }
-    
+    // #endif
   },
   onShow: function () {
     console.log("App Show");
