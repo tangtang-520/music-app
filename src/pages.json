@@ -14,24 +14,17 @@
 				"navigationBarTitleText": "登录",
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
-			},
-			"app-plus": {
-				"bounce": "none"
 			}
 		},
 		{
 			"path": "pages/find/index",
 			"style": {
-				"enablePullDownRefresh": true,
-				"navigationStyle": "custom",
-				"pullToRefresh":{
-					"color": "#d11d05",
-					"offset":"100px"
-				}
-			},
-			"app-plus": {
-				"bounce": "none"
-				
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+				// "pullToRefresh":{
+				// 	"color": "#d11d05",
+				// 	"offset":"100px"
+				// }
 			}
 		},
 		{
@@ -70,7 +63,8 @@
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
 			"background": "#efeff4",
-			"bounce": "none"
+			"bounce": "none",
+			"scrollIndicator":"none"
 		}
 	},
 	"tabBar": {

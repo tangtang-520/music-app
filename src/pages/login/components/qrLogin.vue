@@ -13,7 +13,7 @@
 <script setup>
 import { getQrKey, getQrImg, getQrCheck, getSubCountData, } from "@/api/login";
 import { toast } from "@/utils/common";
-import { setToken, setUseId, setUserInfo } from "@/utils/auth";
+import { setToken, getToken, setUseId, setUserInfo } from "@/utils/auth";
 const qrImgSrc = ref(null);
 const tipsShow = ref(false);
 

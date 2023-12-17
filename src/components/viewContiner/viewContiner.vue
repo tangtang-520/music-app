@@ -21,6 +21,7 @@ const props = defineProps({
 .continer {
   margin: 40rpx 0rpx;
   background-color: #fff;
+  border-radius: 20rpx;
   .viewContiner {
     border-radius: 10rpx;
     padding: 0rpx 20rpx;

@@ -1,6 +1,6 @@
 <template>
-  <view class="headerCont" :style="'margin-top:' + marginTop + 'px'">
-    <u-navbar :safeAreaInsetTop="true" fixed placeholder>
+  <view class="headerCont" :style="'padding-top:' + paddingTop + 'px'">
+    <u-navbar :safeAreaInsetTop="true" fixed >
       <template #left>
         <view v-if="leftIcon" @tap="openSetPopup">
           <u-icon name="list" size="28"></u-icon>
@@ -19,7 +19,7 @@
 <script setup>
 import useSystemStore from "@/store/system";
 const systemStore = useSystemStore();
-const marginTop = systemStore.systemInfo?.statusBarHeight;
+const paddingTop = systemStore.systemInfo?.statusBarHeight;
 
 const props = defineProps({
   leftIcon: {
@@ -31,7 +31,6 @@ const props = defineProps({
 const emit = defineEmits([])
 
 const openSetPopup = () => {
-  // console.log();
   systemStore.setPopupShow()
 }
 
@@ -39,6 +38,7 @@ const openSetPopup = () => {
 </script>
 <style lang="scss" scoped>
 .headerCont {
+  margin-bottom: 88rpx;
   .seachBox {
     width: 80%;
     margin-left: 20rpx;

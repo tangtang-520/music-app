@@ -5,6 +5,7 @@
     mode="left"
     @close="close"
     bgColor="#f6f2f2"
+    :overlayStyle="{ 'touch-action': 'none' }"
   >
     <view class="setUserPopup" :style="'margin-top:' + marginTop + 'px'">
       <userList :useProfile="useProfile"></userList>
@@ -30,13 +31,9 @@ const marginTop = systemStore.systemInfo?.statusBarHeight;
 
 const useProfile = userStore.profile;
 
-console.log(useProfile);
-
 const close = () => {
   systemStore.setPopupShow();
 };
-
-console.log(111);
 </script>
 <style lang="scss" scoped>
 .setUserPopup {

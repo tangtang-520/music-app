@@ -10,6 +10,7 @@ const useSystemStore = defineStore('system', {
     getSystemInfoData: state => {
         return uni.getSystemInfo({
           success: function (res) {
+            console.log(res);
             state.systemInfo = res
           },
           fail: function (err) {
